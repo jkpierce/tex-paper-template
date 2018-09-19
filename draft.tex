@@ -11,10 +11,12 @@
 \pagestyle{fancy}
 \setlength{\parindent}{0in}
 
+%blindtext 
+\usepackage[english]{babel}
+\usepackage{blindtext}
 
 %font 
-\usepackage{heuristica}
-\usepackage[heuristica,vvarbb,bigdelims]{newtxmath}
+
 \usepackage[T1]{fontenc}
 \renewcommand*\oldstylenums[1]{\textosf{#1}}
 
@@ -63,8 +65,8 @@
 
 
 %control the header text here
-\lhead{\color{violet}{ROUGH DRAFT} \color{black}{:} \color{blue}{JUNE 2018}}
-\rhead{\color{blue}{K. PIERCE}}
+\lhead{\color{violet}{MARGIN THINGO} \color{black}{:} \color{blue}{DATE}}
+\rhead{\color{blue}{HUMANMAN}}
 \lfoot{}
 \rfoot{}
 
@@ -73,8 +75,8 @@
 
 
 %input the title here. 
-\title{\vspace{-2cm}\textcolor{blue}{\Large Mechanistic Determination of Bedload Ensemble Statistics}\vspace{-0.5cm} }
-\author{\textbf{KEVIN PIERCE \\ \vspace{-0.5cm} \footnotesize UNIVERSITY OF BRITISH COLUMBIA }\vspace{-1cm}}
+\title{\vspace{-2cm}\textcolor{blue}{\Large TITLE}\vspace{-0.5cm} }
+\author{\textbf{PERSON HUMANMAN \\ \vspace{-0.5cm} \footnotesize UNIVERSITY OF SOMEWHERE }\vspace{-1cm}}
 
 %leave this blank unless you want it 
 \date{} 
@@ -90,7 +92,7 @@
 \input{program}
 \input{conclusion}
 
-\bibliographystyle{custom}
+\bibliographystyle{plainnat}
 \bibliography{biblio}
 
 \end{document}   
