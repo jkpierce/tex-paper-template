@@ -1,0 +1,76 @@
+\section{BACKGROUND:} \label{sec:background}
+
+In order to frame the proposed research problem as a missing link between Newtonian mechanics and the ensemble statistics required for stochastic bedload flux calculations, two necessary preliminaries are to describe the existing stochastic theory of bedload flux, and to review earlier attempts to calculate 3D Lagrangian bedload trajectories with Newtonian mechanics. These preliminaries will support the proposed computational and experimental methods revealed in \S \ref{sec:compmethods} and \S \ref{sec:exptmethods} respectively.
+
+
+\subsection{STOCHASTIC BEDLOAD FLUX:} \label{sec:stochasticbackground}
+
+
+The modern stochastic formulation of the bedload flux involves the number of active particles per unit area $\gamma$ and the downstream particle velocity $u$. These quantities vary through space and time, which has motivated a Reynolds-like decomposition into ensemble average and fluctuating components:  $\gamma = \bra \gamma \ket + \gamma'$ and $u = \bra u \ket + u'$. From this decomposition, different physical arguments have arrived at the same ensemble flux \citep{Furbish2012b, Ancey2014, Ballio2014}: 
+\be \bra q \ket  = \bra u \ket \bra \gamma \ket - \partial_x D_u \bra \gamma \ket . \label{eq:flux}\ee Here $\partial_x = \partial / \partial x$ is the downstream spatial derivative (similarly $\partial_t$ for time) and $D_u$ is a particle diffusivity describing the scaling of the ensemble mean squared particle displacement with time \citep{Furbish2012b}. This flux has advective (first term) and diffusive (second term) components. Notably, the advective component was effectively derived by \cite{Einstein1950}. 
+\bigskip 
+
+Bedload diffusion has a delicate interpretation, exhibiting three ranges of behavior: local, intermediate, and global. Its characteristics are far more elaborate than a classical random walk diffusion \citep{Einstein1905, Zhang2012}. The diffusive scaling in each range is  $\bra x^2 \ket \propto D_u t^\alpha$. These ranges are distinguished by the length and time scales of observation, and they emerge due to the predominance of different processes within each range \citep{Nikora2001a,Nikora2002}. The local range is super-diffusive ($\alpha>1$) due to the predominance of fluid forcing over bed collisions, trapping, or burial. The intermediate range is normal diffusive ($\alpha = 1$) due to the joint predominance of fluid forcing and bed collisions relative to trapping and burial. The global range is likely sub-diffusive ($\alpha < 1$) due to the predominance of trapping and burial over other processes \citep{Zhang2012, Martin2012, Hassan2013, Hassan2015, Furbish2017}, however, the specifics of this picture are contradictory in the literature and require further research. If $D_u$, $\bra u\ket $, and $\bra \gamma \ket $ are specified at the scale of interest, bedload flux is predicted by equation \ref{eq:flux}.  
+\bigskip 
+
+Imposing particle conservation through exchange and motion specifies $\bra\gamma\ket$ in terms of entrainment, deposition, and transport \citep{CHARRU2004,Lajeunesse2010,Furbish2012b,Ancey2014,Ancey2015, Furbish2017}:
+\be \partial_t \bra \gamma \ket + \partial_x \bra q \ket = E-D.  \ee
+$E$ and $D$ are the exchange statistics. They are the rates of particle entrainment and deposition per unit area of \cite{Einstein1950}. 
+\bigskip 
+
+Additionally, $D$ links to $E$ through the kinematic statistics. Deposition is entrainment upstream at previous moments: 
+\be D(x,t) = \int_{0}^\infty dl_p \int_{0}^\infty dt_p E(x-l_p,t-t_p)P_{L_p,T_p}(l_p,t_p).\ee $P_{L_p,T_p}(l_p,t_p)$ is the joint probability distribution of particle hop length and travel time. The integrals accumulate entrainment from all upstream positions $x-l_p$ at earlier times $t-t_p$, $E(x-l_p,t-t_p)$, with the probability of moving distance $l_p$ in time $t_p$, $P_{L_p,T_p}(l_p,t_p)dl_p dt_p$, over all possibilities of $l_p$ and $t_p$ \citep{Furbish2012a,Fathel2015,Furbish2017, Furbish2017a}. The marginal distributions of $P_{L_p,T_p}$ are the particle hop length and travel time, originally introduced by \cite{Einstein1937}: $	P_{L_p}(l_p) = \int_{0}^{\infty} dt_p P_{L_p,T_p}(l_p,t_p)$ and $	P_{T_p}(t_p) = \int_{0}^{\infty} dl_p P_{L_p,T_p}(l_p,t_p).$ 
+\bigskip 
+
+From this stochastic formalism, the statistically expected flux $\bra q \ket$ is determined from exchange and kinematic statistics. The exchange statistics are the areal entrainment rate $E$, areal deposition rate $D$, and diffusivity $D_u$. The kinematic statistics are the joint distribution of downstream particle displacement and travel time $P_{L_p,T_p}(l_p,t_p)$ and the downstream particle velocity distribution $P_U(u)$. This formulation is elegant, and shows promise for capturing the variability of real streams, but it has a major issue which prevents its application. Theory provides no specification of its required input statistics in terms of practically measurable channel parameters, nor does it constrain the  diffusive scaling region boundaries. This proposal concerns these specifications. 
+
+
+\subsection{STOCHASTIC LAGRANGIAN MECHANICS:}\label{sec:lagrangianbackground}
+
+The required statistics and diffusive range boundaries result from underlying Newtonian mechanics. Lagrangian particle trajectories emerge from the integration of 
+\be m \frac{d\textbf{v}}{dt} = \textbf{F}(\textbf{x},t,\dots) \label{eq:langevin},\ee
+where $\textbf{F}$ describes all interactions of the particle with the fluid and all other particles. For the reasons discussed in \S \ref{sec:intro}, $\textbf{F}$ is very difficult to characterize, so this approach offers considerable resistance. If \textbf{F} is properly described, equation \ref{eq:langevin} will describe entrainment, motion, and deposition of particles. When many trajectories are accumulated from integrations of \ref{eq:langevin} from a wide variety of possible initial and boundary conditions, the resulting ensemble will define the kinematic and exchange statistics, and the diffusive range boundaries required to apply equation \ref{eq:flux} at the scale of interest. 
+\bigskip 
+
+
+Of course, $\textbf{F}$ is intricate, with contributions from a turbulent fluid phase and dynamic granular phase, interlinked through the fluid response to the dynamic granular boundary it induces: this linkage is not well understood. Many studies of bedload transport have integrated \ref{eq:langevin} with some approximation of $\textbf{F}$. Adequate approximations are difficult to construct: either approaches are too simple to capture essential features, or too computationally expensive to be practically useful. The approximation chosen should depend on the phenomena of interest, noted by \cite{Murray2003} as a "regrettable necessity" due to the complexity of these phenomena. 
+\bigskip 
+
+
+The proposed methods in \S \ref{sec:methods} are the result of a careful literature review, borrowing and elaborating aspects of earlier approaches to strike a balance between complexity and computational cost, in line with the appropriate complexity model selection framework developed by \cite{Larsen2016}, while tailoring the approach to produce the quantities of interest \citep{Murray2003}, which in this case are large Lagrangian ensembles expressing entrainment, motion, and deposition. In order to motivate the selected methods, the strengths and weaknesses of a set reviewed approaches will now be evaluated against these metrics, starting from the simplest approximations of $\textbf{F}$ and moving to the most complex.   
+\bigskip 
+
+%evaluate on computational cost and ability to reproduce the phenomena you want 
+The simplest category of efforts to form ensembles from integrating equation \ref{eq:langevin} has represented $\textbf{F}$ by a fluctuating bulk streamwise force without an explicit process linkage to turbulence or bed collisions \citep{Zhang2012, Ancey2014,Fan2014,Fan2016}. These modified random walk models derive ensembles with probability distributions of streamwise particle velocity which agree in form with those obtained in experiments, and some have revealed ranges of diffusion \citep{Zhang2012,Fan2016}, although the range boundaries seem unrealistic. 
+\bigskip 
+
+These approaches reveal equation \ref{eq:langevin} as the foundation of ensemble statistics, and they are computationally inexpensive, allowing the simulation of large ensembles ($10^5$) on a typical personal computer in minutes. However, their simplicity prevents their application to the problem of mechanical closure, since they are unable to produce travel time, hop length, entrainment, or deposition statistics. These quantities require a vertical motion component with a granular forces upon bed contact. 
+\bigskip 
+
+The next level of complexity has considered $\textbf{F}$ as 2D or 3D turbulent driving forces, while bed impacts are incorporated with a simplistic hard sphere impulse approach (from \citep{Crowe1998}), capturing their basic features. These models are reviewed in \cite{Bialik2015a}. Bed geometry is considered a uniform arrangement of immobile spheres, either close packed \citep{Bialik2010,Bombardelli2010,Bialik2012,Moreno2012, Bialik2013,Bialik2015}, or with vacancies \citep{Kharlamova2015}. Some approaches generated turbulence with spectral methods \citep[e.g.][]{Bialik2012}. 
+\bigskip 
+
+
+Among the spectral turbulence models, there is clear resolution of the three ranges of bedload diffusion. Spectral turbulence is attractive because it provides a computationally inexpensive way to develop turbulent velocity fields with prescribed statistics, including mean profiles and turbulent intensities. However, in these models, boundaries of the diffusive zones seem unrealistically large, probably in part because of the simplicity of bed geometry and collisions, and because moving particles do not have feedback with the flow, since it is only characterized statistically. 
+\bigskip 
+
+A more complex set of studies has considered a fully resolved mobile granular phase, including grain-grain interactions into $\textbf{F}$ using the discrete element method (DEM) of \cite{Cundall1979}. In DEM, each pair of contacting grains interacts with repulsive, frictional, and viscous forces \citep{Dziugys2001}. Early examples of this approach represented the fluid contribution to $\textbf{F}$ as constant or steadily varying, possibly modified by particle exposure \citep{Jiang1993, Jefcoate1995, Jefcoate1997, McEwan2001, McEwan2004}. These studies strongly support the conclusion that bedload transport is poorly characterized by mean properties of the flow and sediment bed. 
+\bigskip 
+
+Later DEM studies modeled the fluid contribution to $\textbf{F}$ as an idealized turbulent forcing generated by measured \citep{Schmeeckle2003} or spectral synthetic time series \citep{Nikora2001a}. The study of \cite{Nikora2001a}, applying spectral synthetic turbulence generation in conjunction with DEM, revealed local and intermediate diffusion regimes separated by a realistic scaling boundary. The discrete element method is attractive since it allows for incorporation of realistic particle-particle interactions, although admittedly it has a relatively high computational cost.
+\bigskip 
+
+The most complex (and realistic) approximations of $\textbf{F}$ have emerged in the last five years. Large eddy simulations (LES) of the fluid phase have been performed in conjunction with granular dynamics simulations with DEM \citep{Schmeeckle2014, Schmeeckle2015,Sun2016, Liu2016,Elghannay2017, Elghannay2017a}. These LES-DEM computations provide a wealth of information about sediment transport characteristics. However, they are computationally expensive, and their recent emergence is coupled to the development of computing technology. 
+\bigskip 
+
+State of the art LES-DEM computations are expressed in \cite{Elghannay2017}. They computed 10 trials across a range of flow conditions, from bedload to washload. Each considers at most 330,000 identical spheres, simulated alongside turbulent flow for 10s. They find $q_s \propto \tau^{3/2}$ (i.e. \cite{Meyer-Peter1948}) with departures near threshold conditions. The simulations indicate unequivocally that coherent turbulent structures drive entrainment events, and that underlying Newtonian mechanics govern sediment transport processes. However, it's clear that computational cost limits the application of LES-DEM to the current problem, since the study of kinematic and exchange distributions on intermediate or global ranges requires much longer than 10s, and many controls on sediment exchange are known to require multiple grain sizes for their expression \citep[e.g.][]{Parker1982, Brayshaw1984}.  
+\bigskip 
+
+Therefore, keeping with the model selection criteria presented in \cite{Larsen2016} and \cite{Murray2003}, remaining in clear sight of the computational objective, which is to calculate large ensembles of ( $\char`\~ 10^5$) Lagrangian trajectories given measurable flow and granular characteristics, the chosen computational model for the proposed research program will couple spectral synthetic turbulence (SST) generation to the discrete element method (DEM). SST provides a computationally inexpensive method to generate turbulent time series with prescribed statistics and correlations. DEM is the best available method to account for the granular phase contributions to bedload dynamics.
+\bigskip 
+
+Since turbulence statistics can be prescribed to SST, rather than determined after computation, as in LES, the SST approach has additional advantages over LES for the research program, even if the computational expense criterion were discarded. SST is the simplest way to turn statistical measurements from real streams, such as mean velocity profiles, Reynolds stress profiles, and energy spectra, into realistic turbulent flow fields. The specifics of the coupled SST-DEM model are described in \S \ref{sec:compmethods}. The proposed experimental methods are presented in \S \ref{sec:exptmethods}, and the ten specific research projects which to be developed from these are revealed in \S \ref{sec:program}.
+\bigskip 
+
+
+

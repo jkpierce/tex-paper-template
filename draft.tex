@@ -1,0 +1,96 @@
+%define the document type, font, and spacing
+\documentclass[12pt]{article}   	
+\usepackage[tmargin=1in,lmargin=0.75in,rmargin=0.75in,bmargin=0.75in]{geometry}              	
+%\geometry{a4paper,margin=1in} 
+%this allows font color control
+\usepackage{xcolor}
+\usepackage{sectsty}	
+\sectionfont{\color{blue}}
+%here is the header definition
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\parindent}{0in}
+
+
+%font 
+\usepackage{heuristica}
+\usepackage[heuristica,vvarbb,bigdelims]{newtxmath}
+\usepackage[T1]{fontenc}
+\renewcommand*\oldstylenums[1]{\textosf{#1}}
+
+%control title and section headers
+%\titleformat{command}[shape]{format}{label}{sep}{before code}[after code]
+\usepackage{titlesec}
+%https://bugs.launchpad.net/ubuntu/+source/texlive-extra/+bug/1574052
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
+
+%format section titles
+\titleformat{\section}[block]{\color{blue}\small\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}[hang]{\color{blue}\footnotesize\bfseries\filcenter}{\thesubsection}{1em}{}
+
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\refname}{REFERENCES:}
+\renewcommand{\abstractname}{\color{blue}{ABSTRACT:}}
+
+%define bibliography                  		
+\usepackage[square]{natbib}
+\usepackage[colorlinks=true,allcolors=red]{hyperref}
+
+
+%comment package allows you to block sections from compiling 
+\usepackage{comment}
+       
+%allows adding graphics 
+\usepackage{graphicx}				
+				
+%this is all about math 						
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{authblk}
+\usepackage{verbatim} %provides comment command 
+\newcommand\be{\begin{equation}}
+\newcommand\ee{\end{equation}}
+\newcommand\ol{\overline} %for the average bar
+\newcommand\bra{\langle}
+\newcommand\ket{\rangle}
+
+
+
+%control the header text here
+\lhead{\color{violet}{ROUGH DRAFT} \color{black}{:} \color{blue}{JUNE 2018}}
+\rhead{\color{blue}{K. PIERCE}}
+\lfoot{}
+\rfoot{}
+
+%add line numbers
+\usepackage{lineno}
+
+
+%input the title here. 
+\title{\vspace{-2cm}\textcolor{blue}{\Large Mechanistic Determination of Bedload Ensemble Statistics}\vspace{-0.5cm} }
+\author{\textbf{KEVIN PIERCE \\ \vspace{-0.5cm} \footnotesize UNIVERSITY OF BRITISH COLUMBIA }\vspace{-1cm}}
+
+%leave this blank unless you want it 
+\date{} 
+
+%and here is where the sections are pulled together into a document 
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\input{abstract}
+\input{intro}
+\input{background}
+\input{methods}
+\input{program}
+\input{conclusion}
+
+\bibliographystyle{custom}
+\bibliography{biblio}
+
+\end{document}   
